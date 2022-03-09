@@ -24,7 +24,10 @@ class ZombiesCommand(config: ZombiesConfig, plugin: Zombies) : Command("zb") {
                     else -> fail("Invalid argument")
                 }
             }
-            children(AddSpawnPointCommand(config), ConfigCommandBuilder(config).build())
+            children(
+                AddSpawnPointCommand(config),
+                ConfigCommandBuilder(config).also { config.subConfigs.forEach { c -> it.addConfig(c) } }.build()
+            )
         }
     }
 }

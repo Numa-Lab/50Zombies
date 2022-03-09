@@ -7,4 +7,8 @@ import org.bukkit.plugin.Plugin
 class ZombiesConfig(plugin: Plugin) : BaseConfig(plugin) {
     val isEnabled = BooleanValue(false)
     val spawnPoints = mutableListOf<SpawnPoint>()
+    val phase = PhaseConfig(plugin)
+
+    @Transient
+    val subConfigs = listOf<BaseConfig>(phase)
 }
